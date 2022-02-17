@@ -1,4 +1,4 @@
-package service;
+package com.sparta.week04.service;
 
 import com.sparta.week04.repository.Product;
 import com.sparta.week04.repository.ProductMypriceRequestDto;

@@ -1,4 +1,4 @@
-package controller;
+package com.sparta.week04.controller;
 
 import com.sparta.week04.repository.Product;
 import com.sparta.week04.repository.ProductRepository;

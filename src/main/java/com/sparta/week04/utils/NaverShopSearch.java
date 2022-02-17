@@ -11,22 +11,22 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component //컴포넌트 등록
+@Component // 이제부터, @RequiredArgsConstructor 와 함께 사용할 경우 스프링이 자동으로 생성합니다.
 public class NaverShopSearch {
     public String search(String query) {
-        RestTemplate rest = new RestTemplate(); //rest Template
-        HttpHeaders headers = new HttpHeaders(); //헤더 생성
-        headers.add("X-Naver-Client-Id", "sm6a0kT4QF91wheMCrpP");
-        headers.add("X-Naver-Client-Secret", "pPNTnZEwDC");
+        RestTemplate rest = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-Naver-Client-Id", "zdqMoIkFaK8uKvC2oNY2");
+        headers.add("X-Naver-Client-Secret", "LiZfsgtuD5");
         String body = "";
 
         HttpEntity<String> requestEntity = new HttpEntity<String>(body, headers);
-        ResponseEntity<String> responseEntity = rest.exchange("https://openapi.naver.com/v1/search/shop.json?query="+query, HttpMethod.GET, requestEntity, String.class);
+        ResponseEntity<String> responseEntity = rest.exchange("https://openapi.naver.com/v1/search/shop.json?query=" + query, HttpMethod.GET, requestEntity, String.class);
         HttpStatus httpStatus = responseEntity.getStatusCode();
-        int status = httpStatus.value(); //200 - 잘 받아옴을 의미
-        String response = responseEntity.getBody(); // 문자열
+        int status = httpStatus.value();
+        String response = responseEntity.getBody();
         System.out.println("Response status: " + status);
-//        System.out.println("response: "+ response);
+        System.out.println(response);
 
         return response;
     }
@@ -34,21 +34,12 @@ public class NaverShopSearch {
     public List<ItemDto> fromJSONtoItems(String result) {
         JSONObject rjson = new JSONObject(result);
         JSONArray items  = rjson.getJSONArray("items");
-
         List<ItemDto> ret = new ArrayList<>();
         for (int i=0; i<items.length(); i++) {
-            JSONObject itemJson = items.getJSONObject(i);
-            System.out.println("itemJson: " + itemJson);
+            JSONObject itemJson = (JSONObject) items.get(i);
             ItemDto itemDto = new ItemDto(itemJson);
             ret.add(itemDto);
-            System.out.println("ret: "+ret);
         }
-        return ret; //타이틀, 링크, 이미지, 가격 담은 리스트 반환 
-    }
-
-    public static void main(String[] args) {
-        NaverShopSearch naverShopSearch = new NaverShopSearch();
-        String result = naverShopSearch.search("puma");
-        System.out.println(naverShopSearch.fromJSONtoItems(result));;
+        return ret;
     }
 }
