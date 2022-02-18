@@ -130,7 +130,7 @@ function showProduct() {
         url: '/api/products',
         success: function (response) {
             // 2. 관심상품 목록, 검색결과 목록 비우기
-            $('#product-container').empty();
+            // $('#product-container').empty();
             $('#search-result-box').empty();
             // 3. for 문마다 관심 상품 HTML 만들어서 관심상품 목록에 붙이기!
             for (let i=0; i<response.length; i++) {
@@ -145,7 +145,7 @@ function showProduct() {
 
 function addProductItem(product) {
     // link, image, title, lprice, myprice 변수 활용하기
-    return `        <div class="product-card" onclick="window.location.href='${product.link}'">
+    return `<div class="product-card" onclick="window.location.href='${product.link}'">
             <div class="card-header">
                 <img src="${product.image}"
                      alt="">
@@ -155,9 +155,9 @@ function addProductItem(product) {
                     ${product.title}
                 </div>
                 <div class="lprice">
-                    <span>${numberWithCommas(product.title)}</span>원
+                    <span>${numberWithCommas(product.lprice)}</span>원
                 </div>
-                <div class="isgood" ${product.lprice <= product.myprice ? '' : 'none'}>
+                <div class="isgood ${product.lprice <= product.myprice ? ' ' : 'none'}">
                     최저가
                 </div>
             </div>
@@ -166,16 +166,31 @@ function addProductItem(product) {
 }
 
 function setMyprice() {
-    /**
-     * 숙제! myprice 값 설정하기.
-     * 1. id가 myprice 인 input 태그에서 값을 가져온다.
-     * 2. 만약 값을 입력하지 않았으면 alert를 띄우고 중단한다.
-     * 3. PUT /api/product/${targetId} 에 data를 전달한다.
-     *    주의) contentType: "application/json",
-     *         data: JSON.stringify({myprice: myprice}),
-     *         빠뜨리지 말 것!
-     * 4. 모달을 종료한다. $('#container').removeClass('active');
-     * 5, 성공적으로 등록되었음을 알리는 alert를 띄운다.
-     * 6. 창을 새로고침한다. window.location.reload();
-     */
+
+    // 숙제! myprice 값 설정하기.
+    // 1. id가 myprice 인 input 태그에서 값을 가져온다.
+    let myprice = $('#myprice').val()
+    // 2. 만약 값을 입력하지 않았으면 alert를 띄우고 중단한다.
+    if(myprice === ''){
+        alert('값을 입력하세요');
+        return;
+    }
+    // 3. PUT /api/product/${targetId} 에 data를 전달한다.
+    //    주의) contentType: "application/json",
+    //         data: JSON.stringify({myprice: myprice}),
+    //         빠뜨리지 말 것!
+    $.ajax({
+        type:'PUT',
+        url: `/api/products/${targetId}`,
+        contentType: "application/json",
+        data: JSON.stringify({myprice: myprice}),
+        success: function (response) {
+            // 4. 모달을 종료한다. $('#container').removeClass('active');
+            $('#container').removeClass('active');
+            // 5, 성공적으로 등록되었음을 알리는 alert를 띄운다.
+            alert('등록이 완료되었습니다.');
+            // 6. 창을 새로고침한다. window.location.reload();
+            window.location.reload();
+            }
+    })
 }

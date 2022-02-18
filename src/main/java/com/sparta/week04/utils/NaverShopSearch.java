@@ -1,7 +1,6 @@
 package com.sparta.week04.utils;
 
-import com.sparta.week04.repository.ItemDto;
-import org.graalvm.compiler.lir.CompositeValue;
+import com.sparta.week04.models.ItemDto;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.*;

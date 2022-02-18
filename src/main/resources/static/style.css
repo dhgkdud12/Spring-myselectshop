@@ -247,7 +247,18 @@ button {
     margin-bottom: 10px;
 }
 
-.product-card .card-body .lprice span {
+/*.product-card .card-body .lprice span {*/
+/*    font-size: 21.4px;*/
+/*    font-weight: 600;*/
+/*    font-stretch: normal;*/
+/*    font-style: normal;*/
+/*    line-height: 1;*/
+/*    letter-spacing: -0.43px;*/
+/*    text-align: left;*/
+/*    color: #E8344E;*/
+/*}*/
+
+.lprice span {
     font-size: 21.4px;
     font-weight: 600;
     font-stretch: normal;
@@ -258,13 +269,22 @@ button {
     color: #E8344E;
 }
 
-.product-card .card-body .isgood {
+/*.product-card .card-body .isgood {*/
+/*    margin-top: 10px;*/
+/*    padding: 10px 20px;*/
+/*    color: white;*/
+/*    border-radius: 2.6px;*/
+/*    background-color: #ff8787;*/
+/*    width: 42px;*/
+/*}*/
+
+.isgood {
     margin-top: 10px;
     padding: 10px 20px;
     color: white;
     border-radius: 2.6px;
     background-color: #ff8787;
-    width: 42px;
+    width: 48px;
 }
 
 .none {

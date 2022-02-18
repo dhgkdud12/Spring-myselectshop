@@ -1,6 +1,5 @@
-package com.sparta.week04.repository;
+package com.sparta.week04.models;
 
-import com.sparta.week04.models.Timestamped;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -38,6 +37,10 @@ public class Product extends Timestamped{
         this.lprice=requestDto.getLprice();
         this.image=requestDto.getImage();
         this.myprice=0;
+    }
+
+    public void updateByItemDto (ItemDto itemDto) {
+        this.lprice = itemDto.getLprice();
     }
 
     public void update(ProductMypriceRequestDto requestDto){

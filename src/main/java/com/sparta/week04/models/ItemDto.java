@@ -1,4 +1,4 @@
-package com.sparta.week04.repository;
+package com.sparta.week04.models;
 
 import lombok.Getter;
 import org.json.JSONObject;

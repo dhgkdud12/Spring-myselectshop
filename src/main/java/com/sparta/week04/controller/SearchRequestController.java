@@ -1,6 +1,6 @@
 package com.sparta.week04.controller;
 
-import com.sparta.week04.repository.ItemDto;
+import com.sparta.week04.models.ItemDto;
 import com.sparta.week04.utils.NaverShopSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
